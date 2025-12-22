@@ -1,0 +1,4 @@
+Name:Conan
+Level:1
+HP:70.0
+Weapon:Fire Axe
