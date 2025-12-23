@@ -1,15 +1,12 @@
-package UseCases.RPG;
-
 public class Monster implements Destructible {
 
     private String name;
     private float hp;
 
-
     public Monster(String name, float hp) {
         this.name = name;
         this.setHp(hp);
-        
+
     }
 
     public void setHp(float hp) {

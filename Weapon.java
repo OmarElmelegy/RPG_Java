@@ -1,5 +1,3 @@
-package UseCases.RPG;
-
 enum Element {
 
     FIRE,
@@ -8,7 +6,7 @@ enum Element {
 
 }
 
-public class Weapon {
+public class Weapon implements Comparable<Weapon> {
 
     private String name;
     private int damage;
@@ -42,5 +40,23 @@ public class Weapon {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        // This defines how the object looks when printed
+        return this.name + " (" + this.damage + " DMG | " + this.type + ")";
+    }
+
+    @Override
+    public int compareTo(Weapon other) {
+        // We want to sort by DAMAGE.
+        // Logic: Return negative if 'this' is smaller, positive if 'this' is larger.
+
+        // Ascending order (10, 20, 50)
+        return this.damage - other.damage;
+
+        // If you want Descending (50, 20, 10), swap them:
+        // return other.damage - this.damage;
     }
 }

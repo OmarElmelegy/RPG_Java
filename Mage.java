@@ -1,5 +1,3 @@
-package UseCases.RPG;
-
 public class Mage extends Hero implements Healer {
     private float mana;
 
@@ -21,10 +19,16 @@ public class Mage extends Hero implements Healer {
     }
 
     @Override
-    public void attack(Destructible target) {
+    public void attack(Destructible target) throws RPGException {
 
         if (this == target) {
-            System.out.println("You cannot attack yourself!");
+            throw new RPGException("You are confused! You cannot attack yourself.");
+        }
+        if (target.getHp() <= 0) {
+            throw new RPGException("Stop! " + target.getName() + " is already dead.");
+        }
+        if (this.getWeapon() == null) {
+            throw new RPGException("You have no weapon equipped!");
         }
 
         else {

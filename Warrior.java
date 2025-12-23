@@ -1,5 +1,3 @@
-package UseCases.RPG;
-
 import java.util.Random;
 
 public class Warrior extends Hero {
@@ -25,10 +23,15 @@ public class Warrior extends Hero {
     }
 
     @Override
-    public void attack(Destructible target) {
+    public void attack(Destructible target) throws RPGException {
         if (this == target) {
-            System.out.println("You cannot attack yourself!");
-            return;
+            throw new RPGException("You are confused! You cannot attack yourself.");
+        }
+        if (target.getHp() <= 0) {
+            throw new RPGException("Stop! " + target.getName() + " is already dead.");
+        }
+        if (this.getWeapon() == null) {
+            throw new RPGException("You have no weapon equipped!");
         }
 
         int roll = rand.nextInt(100); // Returns 0 to 99

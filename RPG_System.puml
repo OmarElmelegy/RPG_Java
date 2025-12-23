@@ -1,0 +1,174 @@
+@startuml RPG_System_Class_Diagram
+
+' Interfaces
+interface Destructible {
+  +takeDamage(float): void
+  +getName(): String
+  +getHp(): float
+  +status(): void
+}
+
+interface Healer {
+  +heal(Hero): void
+}
+
+' Abstract Class
+abstract class Hero {
+  {static} -heroCount: int
+  -name: String
+  -level: int
+  -hp: float
+  -currentWeapon: Weapon
+  -weaponBag: Inventory<Weapon>
+  
+  +Hero(String, int, float)
+  +getHp(): float
+  +getLevel(): int
+  +getName(): String
+  {static} +getHeroCount(): int
+  +getWeapon(): Weapon
+  +getInventory(): Inventory<Weapon>
+  +pickupWeapon(Weapon): void
+  +setHp(float): void
+  +setLevel(int): void
+  +status(): void
+  +equip(Weapon): void
+  +takeDamage(float): void
+  {abstract} +attack(Destructible): void
+}
+
+' Concrete Classes
+class Warrior {
+  -rage: float
+  -rand: Random
+  
+  +Warrior(String, int, float, float)
+  +getRage(): float
+  +status(): void
+  +attack(Destructible): void
+}
+
+class Mage {
+  -mana: float
+  
+  +Mage(String, int, float, float)
+  +getMana(): float
+  +status(): void
+  +attack(Destructible): void
+  +heal(Hero): void
+}
+
+class Monster {
+  -name: String
+  -hp: float
+  
+  +Monster(String, float)
+  +setHp(float): void
+  +getHp(): float
+  +getName(): String
+  +status(): void
+  +takeDamage(float): void
+}
+
+class Weapon {
+  -name: String
+  -damage: int
+  -type: Element
+  
+  +Weapon(String, int, Element)
+  +getType(): Element
+  +setType(Element): void
+  +getDamage(): int
+  +setDamage(int): void
+  +getName(): String
+  +setName(String): void
+  +toString(): String
+  +compareTo(Weapon): int
+}
+
+class Potion {
+  +heal(Hero): void
+}
+
+class "Inventory<T>" as Inventory {
+  -items: ArrayList<T>
+  
+  +add(T): void
+  +get(int): T
+  +size(): int
+  +printItems(): void
+  +sortItems(): void
+}
+
+enum Element {
+  FIRE
+  ICE
+  PHYSICAL
+}
+
+class RPGException {
+  +RPGException(String)
+}
+
+class Game {
+  {static} -saveHero(Hero): void
+  {static} +loadHero(): Hero
+  {static} +main(String[]): void
+}
+
+' Relationships
+Hero ..|> Destructible : implements
+Hero --> Weapon : has-a (currentWeapon)
+Hero --> Inventory : has-a (weaponBag)
+Inventory --> Weapon : stores
+
+Warrior --|> Hero : extends
+Warrior ..> RPGException : throws
+
+Mage --|> Hero : extends
+Mage ..|> Healer : implements
+Mage ..> RPGException : throws
+
+Monster ..|> Destructible : implements
+
+Potion ..|> Healer : implements
+
+Weapon --> Element : uses
+Weapon ..|> Comparable : implements
+
+RPGException --|> Exception : extends
+
+Game ..> Hero : uses
+Game ..> Warrior : creates
+Game ..> Monster : creates
+Game ..> Weapon : creates
+Game ..> Scanner : uses
+
+note right of Hero
+  Abstract class that serves as
+  the base for all playable heroes.
+  Implements Destructible so heroes
+  can take damage in combat.
+end note
+
+note right of Inventory
+  Generic class that can store
+  any type T that implements
+  Comparable<T>. Currently used
+  for Weapon storage.
+end note
+
+note left of Warrior
+  Melee fighter with rage mechanic.
+  Has 20% miss chance and 10%
+  critical hit chance (2x damage).
+end note
+
+note left of Mage
+  Magic user with mana.
+  Can heal other heroes,
+  implementing Healer interface.
+end note
+
+@enduml
+

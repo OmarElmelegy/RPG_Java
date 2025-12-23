@@ -1,7 +1,5 @@
-package UseCases.RPG;
-
 public class Potion implements Healer {
-    
+
     @Override
     public void heal(Hero target) {
         target.setHp(target.getHp() + 100);

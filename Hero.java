@@ -1,5 +1,3 @@
-package UseCases.RPG;
-
 public abstract class Hero implements Destructible {
 
     private static int heroCount = 0;
@@ -9,11 +7,16 @@ public abstract class Hero implements Destructible {
     private float hp;
     private Weapon currentWeapon;
 
+
+    private Inventory<Weapon> weaponBag;
+    
+
     public Hero(String name, int level, float hp) {
         this.name = name;
         this.setLevel(level);
         this.setHp(hp);
-
+        this.weaponBag = new Inventory<>();
+        
         heroCount++;
     }
 
@@ -39,6 +42,14 @@ public abstract class Hero implements Destructible {
             this.equip(Fists);
         }
         return this.currentWeapon;
+    }
+
+    public Inventory<Weapon> getInventory() {
+        return this.weaponBag;
+    }
+
+    public void pickupWeapon(Weapon w) {
+        this.weaponBag.add(w);
     }
 
     public void setHp(float hp) {
@@ -71,6 +82,8 @@ public abstract class Hero implements Destructible {
         this.setHp(hp - amount);
     }
 
-    public abstract void attack(Destructible target);
+    public abstract void attack(Destructible target) throws RPGException;
+
+    
 
 }
