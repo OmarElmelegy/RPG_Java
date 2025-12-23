@@ -11,6 +11,7 @@ import model.Mage;
 import model.Monster;
 import model.Warrior;
 import model.Weapon;
+import model.Element;
 import util.Destructible;
 import util.Inventory;
 import util.RPGException;

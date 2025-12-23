@@ -1,5 +1,5 @@
 Name:Conan
 Class:Warrior
 Level:1
-HP:30.0
+HP:90.0
 Weapon:Ice Spear,30,ICE

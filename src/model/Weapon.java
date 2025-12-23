@@ -1,13 +1,5 @@
 package model;
 
-enum Element {
-
-    FIRE,
-    ICE,
-    PHYSICAL;
-
-}
-
 public class Weapon implements Comparable<Weapon> {
 
     private String name;
