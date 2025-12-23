@@ -1,3 +1,7 @@
+package model;
+
+import util.Destructible;
+
 public class Monster implements Destructible {
 
     private String name;

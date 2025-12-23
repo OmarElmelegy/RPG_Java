@@ -1,3 +1,5 @@
+package util;
+
 public interface Destructible {
 
     void takeDamage(float amount);

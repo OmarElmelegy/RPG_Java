@@ -1,0 +1,25 @@
+# Compiled class files
+*.class
+bin/
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# Build directories
+out/
+target/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Save files (optional - remove if you want to commit saves)
+# data/save.txt

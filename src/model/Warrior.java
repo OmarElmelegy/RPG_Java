@@ -1,4 +1,9 @@
+package model;
+
 import java.util.Random;
+
+import util.Destructible;
+import util.RPGException;
 
 public class Warrior extends Hero {
 

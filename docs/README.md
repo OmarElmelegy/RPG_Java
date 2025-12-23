@@ -4,7 +4,7 @@ A complete turn-based RPG battle system demonstrating advanced object-oriented p
 
 ## 🎮 How to Play
 
-Run `Game.java` to start the game. You'll be prompted to load a saved game or start fresh.
+Run `src/game/Game.java` to start the game. You'll be prompted to load a saved game or start fresh.
 
 **Controls:**
 - `1` - Attack the enemy
@@ -12,7 +12,7 @@ Run `Game.java` to start the game. You'll be prompted to load a saved game or st
 
 **Features:**
 - Turn-based combat system
-- Save/Load game progress from `Data/save.txt`
+- Save/Load game progress from `data/save.txt`
 - Weapon system with damage types (FIRE, ICE, PHYSICAL)
 - Generic inventory system for weapon storage
 - Combat mechanics with critical hits and miss chances
@@ -55,7 +55,7 @@ Run `Game.java` to start the game. You'll be prompted to load a saved game or st
 
 ## 📊 UML Diagram
 
-![Hero Combat System Class Diagram](Data/RPG_System_Class_Diagram.png)
+![Hero Combat System Class Diagram](../resources/RPG_System_Class_Diagram.png)
 
 See [`RPG_UML.md`](RPG_UML.md) for detailed class relationships and descriptions.
 
@@ -88,11 +88,14 @@ See [`RPG_UML.md`](RPG_UML.md) for detailed class relationships and descriptions
 ## 🚀 Running the Project
 
 ```bash
-javac Game.java
-java Game
+# Compile the project
+javac -d bin src/**/*.java
+
+# Run the game
+java -cp bin game.Game
 ```
 
-Or use VS Code's "Run Java" button on `Game.java`.
+Or use VS Code's "Run Java" button on `src/game/Game.java`.
 
 ## 🛠️ Requirements
 - Java 11 or higher
@@ -115,21 +118,31 @@ Or use VS Code's "Run Java" button on `Game.java`.
 
 ```
 RPG/
-├── Data/
-│   └── save.txt              # Game save file
-├── Game.java                 # Main game controller
-├── Hero.java                 # Abstract hero base class
-├── Warrior.java              # Warrior implementation
-├── Mage.java                 # Mage implementation
-├── Monster.java              # Enemy class
-├── Weapon.java               # Weapon class + Element enum
-├── Inventory.java            # Generic inventory system
-├── Destructible.java         # Damage-taking interface
-├── Healer.java               # Healing interface
-├── Potion.java               # Healing item
-├── RPGException.java         # Custom exception
-├── RPG_UML.md               # UML diagram documentation
-└── README.md                 # This file
+├── src/                      # Source code
+│   ├── game/                 # Game logic and main controller
+│   │   └── Game.java        # Main game loop, save/load system
+│   ├── model/                # Entity classes
+│   │   ├── Hero.java        # Abstract hero base class
+│   │   ├── Warrior.java     # Warrior implementation
+│   │   ├── Mage.java        # Mage implementation
+│   │   ├── Monster.java     # Enemy class
+│   │   ├── Weapon.java      # Weapon class + Element enum
+│   │   └── Potion.java      # Healing item
+│   └── util/                 # Utilities and interfaces
+│       ├── Destructible.java    # Damage-taking interface
+│       ├── Healer.java          # Healing interface
+│       ├── RPGException.java    # Custom exception
+│       └── Inventory.java       # Generic inventory system
+├── bin/                      # Compiled .class files (generated)
+├── data/                     # Game data
+│   └── save.txt             # Game save file
+├── docs/                     # Documentation
+│   ├── README.md            # This file
+│   ├── RPG_UML.md          # UML class descriptions
+│   └── RPG_System.puml     # PlantUML source
+├── resources/                # Images and diagrams
+│   └── RPG_System_Class_Diagram.png
+└── .vscode/                  # VS Code configuration
 ```
 
 ## 📄 License

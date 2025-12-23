@@ -1,3 +1,9 @@
+package model;
+
+import util.Destructible;
+import util.Healer;
+import util.RPGException;
+
 public class Mage extends Hero implements Healer {
     private float mana;
 

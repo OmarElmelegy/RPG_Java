@@ -1,14 +1,25 @@
+package game;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import model.Hero;
+import model.Mage;
+import model.Monster;
+import model.Warrior;
+import model.Weapon;
+import util.Destructible;
+import util.Inventory;
+import util.RPGException;
+
 public class Game {
 
     private static void saveHero(Hero hero) {
         try {
-            FileWriter writer = new FileWriter("Data/save.txt");
+            FileWriter writer = new FileWriter("data/save.txt");
 
             writer.write("Name:" + hero.getName() + "\n");
             writer.write("Class:" + hero.getClass().getSimpleName() + "\n");
@@ -37,7 +48,7 @@ public class Game {
         Element weaponElement = Element.PHYSICAL;
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("Data/save.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("data/save.txt"));
             String line;
 
             while ((line = reader.readLine()) != null) {

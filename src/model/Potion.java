@@ -1,3 +1,7 @@
+package model;
+
+import util.Healer;
+
 public class Potion implements Healer {
 
     @Override
